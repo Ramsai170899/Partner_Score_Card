@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>Welcome to the Partner Score Card Project</h1>
+    {% if session.username %}
+    <p>Hello, {{ session.username }}!</p>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+    <a href="{{ url_for('signup') }}">Signup</a>
+    <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</body>
+
+</html>
