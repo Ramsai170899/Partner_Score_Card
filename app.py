@@ -35,28 +35,21 @@ def home():
 # Route for the signup page
 
 
-@app.route('/signup', methods=['GET', 'POST'
-                               ])
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form['username'
-                                ]
-        password = request.form['password'
-                                ]
-        first_name = request.form['first_name'
-                                  ]
-        last_name = request.form['last_name'
-                                 ]
-        email = request.form['email'
-                             ]
+        username = request.form['username']
+        password = request.form['password']
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
 
         users = load_users()
         if username in users:
             flash('Username already exists!')
             return redirect(url_for('signup'))
 
-        users[username
-              ] = {
+        users[username] = {
             'password': password,
             'first_name': first_name,
             'last_name': last_name,
@@ -70,27 +63,31 @@ def signup():
 # Route for the login page
 
 
-@app.route('/login', methods=['GET', 'POST'
-                              ])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username'
-                                ]
-        password = request.form['password'
-                                ]
+        username = request.form['username']
+        password = request.form['password']
 
         users = load_users()
-        if username in users and users[username
-                                       ]['password'
-                                         ] == password:
-            session['username'
-                    ] = username
+        if username in users and users[username]['password'] == password:
+            session['username'] = username
             flash('Login successful!')
-            return redirect(url_for('home'))
+            return redirect(url_for('partner_score_card'))
         else:
             flash('Invalid username or password')
             return redirect(url_for('login'))
     return render_template('login.html')
+
+# Route for the Partner Score Card page
+
+
+@app.route('/partner_score_card')
+def partner_score_card():
+    if 'username' not in session:
+        flash('Please log in first.')
+        return redirect(url_for('login'))
+    return render_template('partner_score_card.html')
 
 # Route for the logout
 

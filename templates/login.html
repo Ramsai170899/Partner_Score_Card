@@ -4,16 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/validation.js') }}" defer></script>
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form method="post">
-        <label>Username: <input type="text" name="username" required></label><br>
-        <label>Password: <input type="password" name="password" required></label><br>
-        <input type="submit" value="Login">
-    </form>
-    <a href="{{ url_for('signup') }}">Don't have an account? Signup</a>
+    <div class="container">
+        <h1>Login</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-message">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+        <form id="loginForm" method="post">
+            <label>Username: <input type="text" name="username" required></label>
+            <label>Password: <input type="password" name="password" required></label>
+            <input type="submit" value="Login">
+        </form>
+        <a href="{{ url_for('signup') }}">Don't have an account? Signup</a>
+    </div>
 </body>
 
 </html>
