@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Uploaded File</title>
+    <style>
+      .dataframe {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .dataframe th, .dataframe td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+      .dataframe th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Uploaded File</h1>
+    <table>
+      <tr>
+        <th>Column Names</th>
+        <th>Head</th>
+      </tr>
+      <tr>
+        <td>{{ columns }}</td>
+        <td>{{ head | safe }}</td>
+      </tr>
+    </table>
+  </body>
+</html>
